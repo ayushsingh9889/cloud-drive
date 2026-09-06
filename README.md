@@ -1,35 +1,51 @@
 # ☁️ Cloud Drive
 
-A full-stack cloud storage platform that allows users to securely upload, manage, organize, share, download, restore, and delete files and folders through a modern dark-themed web interface.
+A full-stack cloud storage platform that allows users to securely upload, manage, download, organize, share, and delete files through a modern web interface.
 
-The project is built using **React, Vite, Node.js, Express.js, PostgreSQL, Supabase, JWT, Axios, and Multer**.
+Built with **React, Node.js, Express, PostgreSQL, Supabase, and JWT authentication**.
 
 ---
 
-## 🚀 Project Overview
+## 🌐 Live Demo
 
-**Cloud Drive** is a web-based cloud storage application inspired by platforms such as Google Drive and Dropbox.
+### 🚀 Frontend
 
-Users can:
+**https://cloud-drive-lovat.vercel.app/**
+
+### ⚙️ Backend API
+
+**https://cloud-drive-backend-j6oy.onrender.com**
+
+### 💻 GitHub Repository
+
+**https://github.com/ayushsingh9889/cloud-drive**
+
+---
+
+## 📌 Project Overview
+
+Cloud Drive is a full-stack cloud storage application inspired by platforms such as Google Drive.
+
+The application provides users with a secure dashboard where they can:
 
 * Create an account
 * Login securely
 * Upload files
 * Download files
 * Create folders
-* Organize files and folders
-* View recent files
-* Move files to trash
+* Organize files
+* Search and manage files
+* Move files to Trash
 * Restore deleted files
-* Permanently manage deleted resources
-* Share files/folders with registered users
-* Generate public sharing links
-* Add expiration dates to public links
+* Permanently delete files
+* Share files with other registered users
+* Create public sharing links
 * Protect public links with passwords
-* View files shared with them
-* Manage shared access
-* Use JWT-based authentication
-* Access a responsive dark-themed UI
+* Set link expiration dates
+* View recently uploaded files
+* Manage shared files and folders
+
+The project demonstrates how a modern frontend communicates with a REST API backend and a cloud database/storage system.
 
 ---
 
@@ -37,358 +53,196 @@ Users can:
 
 ## 🔐 Authentication
 
-The application includes a complete authentication system.
-
-### Registration
-
-Users can create an account using:
-
-* Name
-* Email
-* Password
-
-Name validation was added so that names can contain only:
-
-* English letters
-* Spaces
-
-Examples:
-
-```text
-Ayush
-Ayush Singh
-Rahul Kumar
-```
-
-Invalid examples:
-
-```text
-Ayush123
-Ayush@Singh
-Ayush_Singh
-12345
-```
-
-### Login
-
-Users can securely login using their registered:
-
-* Email
-* Password
-
-Authentication is handled using **JWT tokens**.
-
-The frontend stores the authentication token and automatically sends it with API requests.
+* User registration
+* User login
+* JWT-based authentication
+* Password hashing with bcrypt
+* Protected API routes
+* Automatic authentication handling
+* Logout functionality
 
 ---
 
-# 📁 File Management
-
-Cloud Drive provides complete file management functionality.
-
-### Upload Files
-
-Users can upload files through the dashboard.
-
-The backend processes file uploads using **Multer**.
-
-Uploaded files are associated with the authenticated user.
-
-### Download Files
-
-Users can download their uploaded files directly from the dashboard.
-
-### Recent Files
-
-The application provides a recent files section so users can quickly access recently used files.
-
-### Trash
-
-Deleted files are moved to trash instead of being immediately removed.
+## 📁 File Management
 
 Users can:
 
-* View deleted files
+* Upload files
+* Download files
+* View uploaded files
+* Delete files
+* Restore deleted files
+* Permanently delete files
+* View recent files
+* Organize files inside folders
+
+---
+
+## 📂 Folder Management
+
+Users can:
+
+* Create folders
+* View folders
+* Open folders
+* Organize files
+* Navigate through folders
+* Delete folders
+
+---
+
+## 🤝 File & Folder Sharing
+
+Users can share resources with other registered users using their email address.
+
+Supported permissions:
+
+* 👁️ **Viewer**
+* ✏️ **Editor**
+
+Users can also:
+
+* View shared resources
+* Update sharing permissions
+* Remove access
+* View resources shared with them
+
+---
+
+## 🔗 Public Sharing Links
+
+Cloud Drive supports public file/folder sharing.
+
+Users can generate a public link that can include:
+
+* 🔐 Password protection
+* ⏰ Expiration date
+* 🌍 Public access
+
+Example:
+
+```text
+https://cloud-drive-lovat.vercel.app/share/<token>
+```
+
+---
+
+## 🗑️ Trash Management
+
+Deleted files can be moved to Trash instead of being immediately removed.
+
+Users can:
+
+* View Trash
 * Restore files
 * Permanently delete files
 
 ---
 
-# 📂 Folder Management
+## 📊 Dashboard
 
-Users can organize their cloud storage using folders.
+The dashboard provides a centralized interface for managing cloud storage.
 
-Features include:
+It includes:
 
-* Create folders
-* View folders
-* Navigate through folders
-* Store files inside folders
-* Share folders
-* Delete folders
-* Restore folders
-
-This makes the application behave like a traditional cloud storage system.
-
----
-
-# 🤝 File & Folder Sharing
-
-Cloud Drive supports sharing resources with other registered users.
-
-A user can share:
-
-```text
-File
-Folder
-```
-
-with another registered user using their email address.
-
-Available permissions:
-
-### 👁️ Viewer
-
-The user can access the shared resource without editing permissions.
-
-### ✏️ Editor
-
-The user receives editing-level access where supported by the application.
-
----
-
-## Shared With Me
-
-Users can see resources shared with their account through:
-
-```text
-Shared With Me
-```
-
-The backend returns:
-
+* Recent files
+* Folders
 * Shared files
-* Shared folders
-* Owner information
-* Share role
-
----
-
-# 🔗 Public Sharing Links
-
-Cloud Drive also supports public links.
-
-Users can generate a public URL for a file or folder.
-
-Example:
-
-```text
-http://localhost:5173/share/<token>
-```
-
-Public links use secure random tokens generated by the backend.
-
-The token is generated using Node.js `crypto`.
-
----
-
-## 🔒 Password Protected Links
-
-Public links can optionally be protected with a password.
-
-The password is not stored directly.
-
-It is hashed using:
-
-```text
-bcryptjs
-```
-
-before being stored in the database.
-
----
-
-## ⏰ Link Expiration
-
-Users can optionally specify an expiration date for a public link.
-
-This allows temporary sharing of resources.
-
-For example:
-
-```text
-Link created
-        ↓
-Valid until expiration date
-        ↓
-Link expires
-```
-
----
-
-# 🗑️ Share Management
-
-Users can also manage previously created public links.
-
-Supported operations include:
-
-* Create public link
-* View public links
-* Delete public link
-
----
-
-# 🎨 User Interface
-
-The frontend uses a modern **dark/black UI**.
-
-The UI was specifically designed to avoid the default white appearance and provide a professional dark cloud-storage experience.
-
-Main UI areas include:
-
-* Login
-* Registration
-* Dashboard
-* File cards
-* Folder cards
-* Share modal
-* Public link modal
 * Trash
-* Shared files
-* Navigation/sidebar
-* User/account area
-
-The application uses reusable React components instead of putting everything into one page.
+* Upload functionality
+* File actions
+* Folder actions
+* Sharing controls
 
 ---
 
-# 🛠️ Tech Stack
+## 🎨 Modern Dark UI
+
+The frontend uses a modern dark-themed interface with:
+
+* Responsive layout
+* Dark background
+* Clean cards
+* Modern navigation
+* File icons
+* Folder icons
+* Action buttons
+* Toast notifications
+* Responsive components
+
+---
+
+# 🛠️ Technologies Used
 
 ## Frontend
 
-| Technology     | Purpose                |
-| -------------- | ---------------------- |
-| React          | Frontend UI            |
-| Vite           | Development/build tool |
-| React Router   | Client-side routing    |
-| Axios          | API communication      |
-| Lucide React   | Icons                  |
-| CSS            | UI styling             |
-| React Toastify | Notifications          |
+| Technology   | Purpose                  |
+| ------------ | ------------------------ |
+| React        | Frontend UI              |
+| Vite         | Development & build tool |
+| React Router | Client-side routing      |
+| Axios        | API communication        |
+| CSS          | Styling                  |
+| Lucide React | Icons                    |
 
 ---
 
 ## Backend
 
-| Technology | Purpose                             |
-| ---------- | ----------------------------------- |
-| Node.js    | Runtime                             |
-| Express.js | REST API                            |
-| JWT        | Authentication                      |
-| Multer     | File upload handling                |
-| bcryptjs   | Password hashing                    |
-| crypto     | Secure public link token generation |
-| dotenv     | Environment variables               |
-| Nodemon    | Development server                  |
+| Technology | Purpose                 |
+| ---------- | ----------------------- |
+| Node.js    | Backend runtime         |
+| Express.js | REST API framework      |
+| PostgreSQL | Database                |
+| Supabase   | Database/cloud services |
+| JWT        | Authentication          |
+| bcryptjs   | Password hashing        |
+| Multer     | File upload handling    |
+| dotenv     | Environment variables   |
+| Nodemon    | Development server      |
 
 ---
 
-## Database & Storage
+## Deployment
 
-| Technology   | Purpose                            |
-| ------------ | ---------------------------------- |
-| PostgreSQL   | Application database               |
-| Supabase     | PostgreSQL/database infrastructure |
-| File storage | Cloud/file storage integration     |
+| Component   | Platform |
+| ----------- | -------- |
+| Frontend    | Vercel   |
+| Backend     | Render   |
+| Database    | Supabase |
+| Source Code | GitHub   |
 
 ---
 
-# 🏗️ Application Architecture
-
-The project follows a separate frontend/backend architecture.
+# 🏗️ Project Architecture
 
 ```text
 Cloud Drive
 │
 ├── frontend
-│   ├── React
-│   ├── Vite
-│   ├── Components
-│   ├── Pages
-│   ├── API/Axios
-│   └── Styling
-│
-└── backend
-    ├── Express
-    ├── Controllers
-    ├── Routes
-    ├── Middleware
-    ├── Database
-    ├── Utilities
-    └── File handling
-```
-
----
-
-# 📦 Project Structure
-
-```text
-cloud-drive/
-│
-├── backend/
-│   │
-│   ├── src/
-│   │   ├── config/
-│   │   │   └── database.js
-│   │   │
-│   │   ├── controllers/
-│   │   │   ├── auth.controller.js
-│   │   │   ├── file.controller.js
-│   │   │   ├── share.controller.js
-│   │   │   ├── linkShare.controller.js
-│   │   │   └── activity.controller.js
-│   │   │
-│   │   ├── middleware/
-│   │   │   └── auth.js
-│   │   │
-│   │   ├── routes/
-│   │   │   ├── auth.routes.js
-│   │   │   ├── file.routes.js
-│   │   │   ├── folder.routes.js
-│   │   │   ├── share.routes.js
-│   │   │   └── linkShare.routes.js
-│   │   │
-│   │   ├── utils/
-│   │   │   ├── ApiError.js
-│   │   │   └── asyncHandler.js
-│   │   │
-│   │   └── server.js
-│   │
-│   ├── uploads/
-│   ├── .env
-│   └── package.json
-│
-├── frontend/
-│   │
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ShareModal.jsx
-│   │   │   ├── LinkShareModal.jsx
-│   │   │   ├── FileCard.jsx
-│   │   │   └── FolderCard.jsx
-│   │   │
-│   │   ├── pages/
-│   │   │   ├── Login.jsx
-│   │   │   ├── Register.jsx
-│   │   │   └── Dashboard.jsx
-│   │   │
-│   │   ├── services/
-│   │   │   └── api.js
-│   │   │
+│   ├── src
+│   │   ├── components
+│   │   ├── pages
+│   │   ├── services
+│   │   ├── context
+│   │   ├── hooks
 │   │   └── App.jsx
 │   │
-│   ├── .env
-│   └── package.json
+│   ├── public
+│   ├── package.json
+│   └── vite.config.js
+│
+├── backend
+│   ├── src
+│   │   ├── config
+│   │   ├── controllers
+│   │   ├── middleware
+│   │   ├── routes
+│   │   ├── utils
+│   │   └── server.js
+│   │
+│   ├── package.json
+│   └── .env
 │
 ├── .gitignore
 └── README.md
@@ -396,112 +250,231 @@ cloud-drive/
 
 ---
 
-# 🔄 How the Application Works
+# 🔄 Application Flow
 
-## 1. User Registration
+```text
+                    ┌─────────────────────┐
+                    │       User          │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ React Frontend      │
+                    │      + Vite         │
+                    └──────────┬──────────┘
+                               │
+                               │ Axios / REST API
+                               ▼
+                    ┌─────────────────────┐
+                    │ Node.js + Express   │
+                    │      Backend        │
+                    └──────────┬──────────┘
+                               │
+                    ┌──────────┴──────────┐
+                    │                     │
+                    ▼                     ▼
+          ┌─────────────────┐   ┌─────────────────┐
+          │   PostgreSQL    │   │     Supabase    │
+          │    Database     │   │ Storage/Cloud   │
+          └─────────────────┘   └─────────────────┘
+```
+
+---
+
+# 🔐 Authentication Flow
+
+The authentication system works using JWT.
 
 ```text
 User
- ↓
-Register Page
- ↓
-React
- ↓
-Axios
- ↓
-Express API
- ↓
-Authentication Controller
- ↓
-PostgreSQL
+ │
+ ▼
+Register / Login
+ │
+ ▼
+Backend Authentication
+ │
+ ▼
+Password Verification
+ │
+ ▼
+JWT Token Generated
+ │
+ ▼
+Frontend Stores Token
+ │
+ ▼
+Axios Sends Authorization Header
+ │
+ ▼
+Protected Backend Routes
 ```
 
----
+Authenticated API requests use:
 
-## 2. User Login
-
-```text
-Login
- ↓
-POST /api/auth/login
- ↓
-Backend validates credentials
- ↓
-JWT generated
- ↓
-Token returned
- ↓
-Frontend stores token
-```
-
----
-
-## 3. Authenticated API Request
-
-Axios automatically adds:
-
-```text
+```http
 Authorization: Bearer <JWT_TOKEN>
 ```
 
-to protected API requests.
-
-Backend authentication middleware validates the token before allowing access.
-
 ---
 
-# 🔌 API Overview
+# 📡 API
 
-## Authentication
+The production backend is available at:
+
+**https://cloud-drive-backend-j6oy.onrender.com**
+
+API base URL:
 
 ```text
-POST /api/auth/register
-POST /api/auth/login
+https://cloud-drive-backend-j6oy.onrender.com/api
 ```
 
 ---
 
-## Files
+## 🔑 Authentication APIs
 
-```text
-POST   /api/files
-GET    /api/files
-GET    /api/files/recent
-GET    /api/files/trash
-GET    /api/files/:id/download
+### Register
+
+```http
+POST /api/auth/register
+```
+
+Example request:
+
+```json
+{
+  "name": "Ayush Singh",
+  "email": "user@example.com",
+  "password": "your-password"
+}
+```
+
+---
+
+### Login
+
+```http
+POST /api/auth/login
+```
+
+Example:
+
+```json
+{
+  "email": "user@example.com",
+  "password": "your-password"
+}
+```
+
+---
+
+## 📁 File APIs
+
+### Upload File
+
+```http
+POST /api/files/upload
+```
+
+Requires authentication.
+
+---
+
+### Get Files
+
+```http
+GET /api/files/folder/:folderId
+```
+
+---
+
+### Get Recent Files
+
+```http
+GET /api/files/recent
+```
+
+---
+
+### Get Trash
+
+```http
+GET /api/files/trash
+```
+
+---
+
+### Download File
+
+```http
+GET /api/files/:id/download
+```
+
+---
+
+### Delete File
+
+```http
 DELETE /api/files/:id
 ```
 
 ---
 
-## Folders
+### Restore File
 
-```text
-POST /api/folders
-GET  /api/folders/parent/:parentId
+```http
+PATCH /api/files/:id/restore
 ```
-
-Folder functionality is used to organize files within the cloud drive.
 
 ---
 
-## Sharing
+# 📂 Folder APIs
 
-```text
-POST   /api/shares
-GET    /api/shares/shared-with-me
-GET    /api/shares/:resourceType/:resourceId
-DELETE /api/shares/:shareId
+### Create Folder
+
+```http
+POST /api/folders
 ```
 
-Supported resource types:
+---
 
-```text
-file
-folder
+### Get Folder Contents
+
+```http
+GET /api/folders/parent/:parentId
 ```
 
-Supported roles:
+---
+
+### Delete Folder
+
+```http
+DELETE /api/folders/:id
+```
+
+---
+
+# 🤝 Sharing APIs
+
+### Share File or Folder
+
+```http
+POST /api/shares
+```
+
+Example:
+
+```json
+{
+  "resourceType": "file",
+  "resourceId": "FILE_ID",
+  "granteeEmail": "user@example.com",
+  "role": "viewer"
+}
+```
+
+Available roles:
 
 ```text
 viewer
@@ -510,372 +483,70 @@ editor
 
 ---
 
-## Public Links
+### Get Resource Shares
 
-```text
-POST   /api/links
-GET    /api/links
+```http
+GET /api/shares/:resourceType/:resourceId
+```
+
+---
+
+### Get Shared With Me
+
+```http
+GET /api/shares/shared-with-me
+```
+
+---
+
+### Remove Share
+
+```http
+DELETE /api/shares/:shareId
+```
+
+---
+
+# 🔗 Public Link APIs
+
+### Create Public Link
+
+```http
+POST /api/links
+```
+
+Example:
+
+```json
+{
+  "resourceType": "file",
+  "resourceId": "FILE_ID",
+  "expiresAt": null,
+  "password": "optional-password"
+}
+```
+
+---
+
+### Get My Public Links
+
+```http
+GET /api/links
+```
+
+---
+
+### Delete Public Link
+
+```http
 DELETE /api/links/:linkId
 ```
 
-Public links support:
-
-* Secure tokens
-* Optional password protection
-* Optional expiration
-
 ---
 
-# 🗄️ Database
+# ⚙️ Environment Variables
 
-The project uses **PostgreSQL** through **Supabase**.
-
-The application contains database entities for areas such as:
-
-```text
-users
-files
-folders
-shares
-link_shares
-activity
-```
-
-The backend uses parameterized PostgreSQL queries.
-
-Example:
-
-```sql
-SELECT id
-FROM users
-WHERE email = $1;
-```
-
-This avoids directly injecting user input into SQL queries.
-
----
-
-# 🔐 Security
-
-Several security mechanisms are implemented.
-
-### JWT Authentication
-
-Protected APIs require a valid JWT.
-
-### Password Hashing
-
-Passwords/public-link passwords are hashed using:
-
-```text
-bcryptjs
-```
-
-### Parameterized SQL
-
-PostgreSQL queries use placeholders:
-
-```text
-$1
-$2
-$3
-```
-
-instead of directly inserting user input.
-
-### Random Public Tokens
-
-Public links use cryptographically secure random tokens generated with Node.js:
-
-```text
-crypto.randomBytes()
-```
-
-### Environment Variables
-
-Sensitive configuration is stored in `.env`.
-
-Example:
-
-```env
-PORT=5000
-NODE_ENV=development
-
-JWT_SECRET=your-secret
-JWT_EXPIRY=1h
-
-REFRESH_TOKEN_SECRET=your-refresh-secret
-REFRESH_TOKEN_EXPIRY=7d
-
-SUPABASE_URL=your-supabase-url
-SUPABASE_ANON_KEY=your-supabase-key
-```
-
-**Never commit `.env` to GitHub.**
-
----
-
-# 🐛 Important Problems Solved During Development
-
-This project involved solving several real development and debugging problems.
-
-## 1. PostgreSQL Query Placeholder Errors
-
-Some backend queries originally used incorrect parameter placeholders.
-
-They were corrected to PostgreSQL syntax:
-
-```sql
-$1
-$2
-$3
-```
-
-For example:
-
-```sql
-WHERE owner_id = $1
-```
-
-and:
-
-```sql
-WHERE id = $1
-AND owner_id = $2
-```
-
-This fixed database query issues in the file controller.
-
----
-
-# 2. Frontend API Port Mismatch
-
-The frontend Axios configuration originally had a fallback API URL pointing to:
-
-```text
-http://localhost:8080/api
-```
-
-while the backend was running on:
-
-```text
-http://localhost:5000
-```
-
-The API configuration was corrected to:
-
-```text
-http://localhost:5000/api
-```
-
-This allowed the React frontend to communicate correctly with the Express backend.
-
----
-
-# 3. Share API "All fields required" Error
-
-The sharing system initially returned:
-
-```text
-All fields required
-```
-
-The frontend request was corrected to send:
-
-```javascript
-{
-  resourceType,
-  resourceId,
-  granteeEmail,
-  role
-}
-```
-
-After fixing the request, the API correctly progressed to user lookup.
-
----
-
-# 4. Share "User not found" Error
-
-After fixing the missing fields, the backend returned:
-
-```text
-User not found
-```
-
-This was not a backend crash.
-
-It means the email entered into the share form did not belong to a registered user.
-
-The share system was intentionally designed to share directly with registered users.
-
----
-
-# 5. Dashboard Share Resource Mismatch
-
-The Dashboard, FileCard, FolderCard and ShareModal had to use consistent resource information.
-
-The final flow uses:
-
-```javascript
-{
-  resourceType: "file" | "folder",
-  resourceId: resource.id
-}
-```
-
-This allows the same ShareModal to work for both files and folders.
-
----
-
-# 6. Missing Login CSS
-
-A frontend build error occurred because the Login page imported:
-
-```text
-./Login.css
-```
-
-but the file was missing.
-
-The import/file setup was corrected and the Login page was redesigned with the dark UI.
-
----
-
-# 7. Dark Login UI
-
-The login page originally had an unwanted white/light appearance.
-
-The UI was redesigned around a dark/black theme to provide a consistent experience with the rest of the cloud-drive application.
-
----
-
-# 8. React Router Warnings
-
-React Router displayed future-version warnings related to upcoming v7 behavior.
-
-These warnings were identified as warnings rather than application-breaking errors.
-
-Optional future flags can be configured:
-
-```jsx
-<BrowserRouter
-  future={{
-    v7_startTransition: true,
-    v7_relativeSplatPath: true
-  }}
->
-```
-
----
-
-# 9. HTTP 304 Response
-
-The backend showed requests such as:
-
-```text
-GET /api/shares/shared-with-me 304
-GET /api/folders/parent/null 304
-GET /api/files/folder/null 304
-```
-
-`304 Not Modified` is a normal HTTP cache response.
-
-It does not mean the API failed.
-
-The backend also successfully returned:
-
-```text
-200
-```
-
-for a file download.
-
----
-
-# 10. PowerShell curl Issue
-
-On Windows PowerShell, running:
-
-```powershell
-curl http://localhost:5000/health
-```
-
-can invoke PowerShell's `Invoke-WebRequest` behavior instead of the traditional curl executable.
-
-PowerShell displayed a security warning.
-
-This is a Windows/PowerShell behavior rather than an Express server problem.
-
----
-
-# 11. Git `main` Branch Push Error
-
-While pushing the project to GitHub, the following error occurred:
-
-```text
-error: src refspec main does not match any
-```
-
-This happens when there is no local commit/branch available to push.
-
-The solution is:
-
-```powershell
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git push -u origin main
-```
-
----
-
-# 12. Preventing `node_modules` from Being Uploaded
-
-The project uses a `.gitignore` file to prevent dependencies and environment secrets from being committed.
-
-Recommended:
-
-```gitignore
-node_modules/
-.env
-```
-
-This keeps the GitHub repository clean and prevents sensitive configuration from being uploaded.
-
----
-
-# ▶️ Installation & Setup
-
-## Prerequisites
-
-Install:
-
-* Node.js
-* npm
-* PostgreSQL/Supabase account
-* Git
-
----
-
-# 1. Clone Repository
-
-```bash
-git clone https://github.com/ayushsingh9889/cloud-drive.git
-```
-
-```bash
-cd cloud-drive
-```
-
----
-
-# 2. Backend Setup
-
-```bash
-cd backend
-npm install
-```
+## Backend
 
 Create:
 
@@ -883,7 +554,7 @@ Create:
 backend/.env
 ```
 
-Add your configuration:
+Example:
 
 ```env
 PORT=5000
@@ -892,20 +563,88 @@ NODE_ENV=development
 JWT_SECRET=your-jwt-secret
 JWT_EXPIRY=1h
 
-REFRESH_TOKEN_SECRET=your-refresh-secret
+REFRESH_TOKEN_SECRET=your-refresh-token-secret
 REFRESH_TOKEN_EXPIRY=7d
 
 SUPABASE_URL=your-supabase-url
-SUPABASE_ANON_KEY=your-supabase-key
+SUPABASE_ANON_KEY=your-supabase-anon-key
+
+DATABASE_URL=your-database-url
 ```
 
-Start backend:
+> Never commit your `.env` file to GitHub.
+
+---
+
+## Frontend
+
+Create:
+
+```text
+frontend/.env
+```
+
+For production:
+
+```env
+VITE_API_URL=https://cloud-drive-backend-j6oy.onrender.com/api
+```
+
+For local development:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+After changing Vite environment variables, restart the development server.
+
+---
+
+# 💻 Local Installation
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/ayushsingh9889/cloud-drive.git
+```
+
+Go into the project:
+
+```bash
+cd cloud-drive
+```
+
+---
+
+# 🚀 Backend Setup
+
+Open a terminal:
+
+```bash
+cd backend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create `.env`:
+
+```text
+backend/.env
+```
+
+Add your database, Supabase, and JWT configuration.
+
+Start development server:
 
 ```bash
 npm run dev
 ```
 
-Backend:
+Backend will run at:
 
 ```text
 http://localhost:5000
@@ -925,12 +664,17 @@ http://localhost:5000/api
 
 ---
 
-# 3. Frontend Setup
+# 🎨 Frontend Setup
 
 Open another terminal:
 
 ```bash
 cd frontend
+```
+
+Install dependencies:
+
+```bash
 npm install
 ```
 
@@ -940,19 +684,19 @@ Create:
 frontend/.env
 ```
 
-Configure:
+Add:
 
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
-Start frontend:
+Start Vite:
 
 ```bash
 npm run dev
 ```
 
-Frontend will normally run on:
+Frontend will normally run at:
 
 ```text
 http://localhost:5173
@@ -960,45 +704,255 @@ http://localhost:5173
 
 ---
 
-# 🧪 Health Check
+# 🧪 Testing
 
-After starting the backend, open:
+You can verify the backend using:
+
+```text
+GET /health
+```
+
+Local:
 
 ```text
 http://localhost:5000/health
 ```
 
-The backend should return a successful health response.
+Production:
+
+```text
+https://cloud-drive-backend-j6oy.onrender.com/health
+```
 
 ---
 
-# 🔄 Development Workflow
+# 🔒 Security
 
-The project can be developed using two terminals.
+The project implements several security practices:
 
-### Terminal 1 — Backend
+* JWT authentication
+* Password hashing using bcrypt
+* Protected backend routes
+* Authorization middleware
+* User ownership checks
+* Share permission checks
+* Password-protected public links
+* Public link expiration
+* Environment variables for secrets
+* No sensitive credentials committed to Git
+
+---
+
+# 📦 Important Dependencies
+
+### Frontend
+
+```text
+react
+react-dom
+react-router-dom
+axios
+lucide-react
+```
+
+### Backend
+
+```text
+express
+jsonwebtoken
+bcryptjs
+multer
+pg
+dotenv
+cors
+nodemon
+```
+
+---
+
+# 🌍 Deployment
+
+## Frontend — Vercel
+
+Production frontend:
+
+```text
+https://cloud-drive-lovat.vercel.app/
+```
+
+The frontend is deployed using Vercel.
+
+---
+
+## Backend — Render
+
+Production backend:
+
+```text
+https://cloud-drive-backend-j6oy.onrender.com
+```
+
+API:
+
+```text
+https://cloud-drive-backend-j6oy.onrender.com/api
+```
+
+Health check:
+
+```text
+https://cloud-drive-backend-j6oy.onrender.com/health
+```
+
+---
+
+## Database — Supabase
+
+The application uses PostgreSQL/Supabase for database services.
+
+Database credentials should be stored in environment variables and should never be committed to GitHub.
+
+---
+
+# 🧑‍💻 Development
+
+Run frontend and backend separately.
+
+### Terminal 1
 
 ```bash
 cd backend
 npm run dev
 ```
 
-### Terminal 2 — Frontend
+### Terminal 2
 
 ```bash
 cd frontend
 npm run dev
 ```
 
-Then open:
+---
+
+# 🐛 Error Handling
+
+The backend uses centralized error-handling utilities to provide consistent API responses.
+
+Examples include:
 
 ```text
-http://localhost:5173
+400 Bad Request
+401 Unauthorized
+403 Forbidden
+404 Not Found
+500 Internal Server Error
 ```
+
+The frontend displays user-friendly notifications for important operations.
 
 ---
 
-# 📤 GitHub Deployment
+# 📈 Future Improvements
+
+Possible future improvements include:
+
+* 📊 Storage usage dashboard
+* ⭐ Favorite files
+* 🔍 Advanced file search
+* 🖼️ Image previews
+* 🎬 Video previews
+* 📄 Document previews
+* 📦 Multiple file upload
+* ⬇️ Folder download as ZIP
+* 📱 Improved mobile interface
+* 🔔 Real-time notifications
+* 👥 Advanced team collaboration
+* 📜 File version history
+* 🔐 Two-factor authentication
+* ☁️ Additional cloud storage providers
+
+---
+
+# 🎯 Learning Objectives
+
+This project helped demonstrate practical knowledge of:
+
+* React development
+* Component-based architecture
+* React Router
+* REST APIs
+* Node.js
+* Express.js
+* PostgreSQL
+* Supabase
+* JWT authentication
+* Password hashing
+* File uploads
+* Authorization
+* API integration
+* Axios
+* Environment variables
+* Git and GitHub
+* Vercel deployment
+* Render deployment
+* Debugging frontend/backend issues
+
+---
+
+# 📸 Application Features
+
+### Authentication
+
+Users can securely register and login to access their cloud storage.
+
+### Dashboard
+
+A centralized dashboard provides access to files, folders, shared resources, and Trash.
+
+### File Management
+
+Users can upload, download, delete, and restore files.
+
+### Folder Management
+
+Files can be organized into folders for easier management.
+
+### Sharing
+
+Files and folders can be shared with other registered users.
+
+### Public Links
+
+Users can generate public links with optional password protection and expiration.
+
+---
+
+# 📊 Project Status
+
+| Feature                  | Status      |
+| ------------------------ | ----------- |
+| User Registration        | ✅ Completed |
+| User Login               | ✅ Completed |
+| JWT Authentication       | ✅ Completed |
+| File Upload              | ✅ Completed |
+| File Download            | ✅ Completed |
+| File Delete              | ✅ Completed |
+| File Restore             | ✅ Completed |
+| Trash                    | ✅ Completed |
+| Folder Creation          | ✅ Completed |
+| Folder Management        | ✅ Completed |
+| User Sharing             | ✅ Completed |
+| Viewer Permission        | ✅ Completed |
+| Editor Permission        | ✅ Completed |
+| Public Links             | ✅ Completed |
+| Password Protected Links | ✅ Completed |
+| Link Expiration          | ✅ Completed |
+| Frontend Deployment      | ✅ Completed |
+| Backend Deployment       | ✅ Completed |
+
+---
+
+# 🗂️ Git Workflow
 
 Initialize Git:
 
@@ -1024,7 +978,7 @@ Set main branch:
 git branch -M main
 ```
 
-Add GitHub repository:
+Add remote:
 
 ```bash
 git remote add origin https://github.com/ayushsingh9889/cloud-drive.git
@@ -1036,194 +990,38 @@ Push:
 git push -u origin main
 ```
 
+For future updates:
+
+```bash
+git add .
+git commit -m "Update Cloud Drive"
+git push
+```
+
 ---
 
 # 🚫 Files That Should Not Be Committed
 
-Never push:
-
-```text
-.env
-node_modules/
-```
-
-Your `.gitignore` should contain:
+Make sure your `.gitignore` contains:
 
 ```gitignore
 node_modules/
 .env
+.env.local
+dist/
+build/
+*.log
 ```
 
----
-
-# 📊 Current Backend Status
-
-The backend successfully runs on:
+Never upload:
 
 ```text
-http://localhost:5000
+.env
+database passwords
+JWT secrets
+Supabase private keys
+API keys
 ```
-
-Current successful server startup includes:
-
-```text
-✅ Supabase configured successfully
-✅ Database connected successfully
-✅ Database connection verified
-🚀 Cloud Drive Backend Server
-✅ Server running on: http://localhost:5000
-✅ Health check: http://localhost:5000/health
-✅ API base: http://localhost:5000/api
-```
-
----
-
-# 🎯 Main Project Capabilities
-
-```text
-                    CLOUD DRIVE
-                         │
-        ┌────────────────┼────────────────┐
-        │                │                │
-   Authentication    File Management   Folders
-        │                │                │
-   ┌────┴────┐       ┌───┴────┐       ┌───┴────┐
- Register   Login   Upload  Download   Create   Navigate
-                     │
-                ┌────┴────┐
-              Recent     Trash
-                         │
-                    Restore/Delete
-                         
-                         │
-                  ┌──────┴──────┐
-                  │             │
-              User Share    Public Link
-                  │             │
-            Viewer/Editor   Password
-                                │
-                            Expiration
-```
-
----
-
-# 🌟 Why This Project?
-
-This project was developed to understand how a real-world cloud storage application works from frontend to backend.
-
-It demonstrates practical knowledge of:
-
-* Full-stack development
-* REST APIs
-* Authentication
-* JWT
-* Database integration
-* PostgreSQL
-* Supabase
-* File uploads
-* File downloads
-* Folder management
-* Access control
-* Resource sharing
-* Public links
-* Password hashing
-* API error handling
-* React component architecture
-* Axios interceptors
-* Git/GitHub
-* Debugging
-* Environment variables
-
----
-
-# 📚 What I Learned
-
-While developing Cloud Drive, I gained practical experience in:
-
-### Frontend
-
-* React component development
-* React Router
-* Axios
-* Forms and validation
-* Modal components
-* API integration
-* Authentication state
-* Dark UI development
-
-### Backend
-
-* Express.js
-* REST API development
-* Middleware
-* Controllers
-* Route organization
-* Error handling
-* JWT authentication
-* File upload handling
-* Secure token generation
-
-### Database
-
-* PostgreSQL
-* SQL queries
-* Parameterized queries
-* Relationships between users, files, folders and shares
-* Supabase database integration
-
-### Security
-
-* JWT authentication
-* Password hashing
-* Environment variables
-* Parameterized SQL queries
-* Secure random tokens
-* Access control
-
-### DevOps / Development
-
-* npm
-* Nodemon
-* Git
-* GitHub
-* Environment configuration
-* Debugging server/client communication
-
----
-
-# 🔮 Future Improvements
-
-Possible future features include:
-
-* Google/GitHub OAuth login
-* Drag & drop file upload
-* File preview
-* Image preview
-* Video/audio preview
-* Search files
-* File rename
-* Folder rename
-* Move files between folders
-* Storage quota
-* User profile
-* Notifications
-* Advanced permissions
-* Activity history UI
-* File versioning
-* Recycle-bin auto cleanup
-* Cloud deployment
-* Docker support
-* CI/CD pipeline
-* AWS S3 integration
-* Better mobile responsiveness
-
----
-
-# 📌 Project Status
-
-**Status:** 🚧 Active Development
-
-The core cloud-drive functionality is implemented, including authentication, file management, folders, sharing, public links, database connectivity, and dark-themed frontend UI.
 
 ---
 
@@ -1231,16 +1029,17 @@ The core cloud-drive functionality is implemented, including authentication, fil
 
 **Ayush Singh**
 
-B.Tech CSE Student
-Interested in:
+B.Tech Computer Science Engineering Student
 
-* Cloud Computing
-* AWS
-* Full-Stack Development
-* DevOps
-* Backend Development
-* Linux
-* Networking
+---
+
+# 🔗 Project Links
+
+| Resource         | Link                                          |
+| ---------------- | --------------------------------------------- |
+| 🌐 Live Frontend | https://cloud-drive-lovat.vercel.app/         |
+| ⚙️ Backend API   | https://cloud-drive-backend-j6oy.onrender.com |
+| 💻 GitHub        | https://github.com/ayushsingh9889/cloud-drive |
 
 ---
 
@@ -1250,6 +1049,6 @@ If you find this project useful, consider giving the repository a ⭐ on GitHub.
 
 ---
 
-## 📄 License
+## 📜 License
 
-This project is created for learning and development purposes.
+This project is created for educational and portfolio purposes.
